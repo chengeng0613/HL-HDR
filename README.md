@@ -19,13 +19,12 @@ The architecture of the proposed HL-HDR. HL-HDR consists of two components. The 
 
 ### Requirements
 * Python 3.7.0
-* MegEngine 1.8.3+
 * CUDA 10.0 on Ubuntu 18.04
 
 Install the require dependencies:
 ```bash
-conda create -n hdr_transformer python=3.7
-conda activate hdr_transformer
+conda create -n hlhdr python=3.7
+conda activate hlhdr
 pip install -r requirements.txt
 ```
 
@@ -74,15 +73,12 @@ python train.py --model_dir experiments
 ```
 To evaluate, run:
 ```
-python evaluate.py --model_dir experiments --restore_file experiments/val_model_best.pth
+python fullimagetest.py
 ```
 
 ## Results
 ![results](https://github.com/chengeng0613/HL-HDR/blob/main/picture/compare.png)
 
-
-
-## Acknowledgement
 
 
 ## Citation

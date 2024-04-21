@@ -10,7 +10,7 @@ Specifically, considering the characteristics of different frequencies, for the 
 By incorporating the FDPB as basic components, we further build a Low/High-Frequency Aware Network (HL-HDR), a hierarchical network to reconstruct high-quality ghost-free HDR images. Extensive experiments on four public datasets confirm the superior performance of the proposed method, both in terms of quantitative and qualitative evaluations.
 
 ## Pipeline
-![pipeline]()
+![pipeline](https://github.com/chengeng0613/HL-HDR/blob/main/picture/overview.png)
 The architecture of the proposed HL-HDR. HL-HDR consists of two components. The first component is the feature alignment stage, where an Alignment Module is used to align the overexposed and underexposed images with the normally exposed images, which serves as the reference frame. The second component is the feature extraction, where the feature map is divided into high-frequency and low-frequency information, and processed separately based on their characteristics.
 
 
@@ -78,7 +78,7 @@ python evaluate.py --model_dir experiments --restore_file experiments/val_model_
 ```
 
 ## Results
-![results]()
+![results](https://github.com/chengeng0613/HL-HDR/blob/main/picture/compare.png)
 
 
 

@@ -71,7 +71,7 @@ To train the model, run:
 ```
 python train.py --model_dir experiments
 ```
-To evaluate, run:
+To test, run:
 ```
 python fullimagetest.py
 ```

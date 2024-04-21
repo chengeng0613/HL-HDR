@@ -65,7 +65,7 @@ python gen_crop_data.py
 
 ### Training & Evaluaton
 ```
-cd HDR-Transformer
+cd HL-HDR
 ```
 To train the model, run:
 ```

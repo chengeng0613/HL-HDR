@@ -1,4 +1,4 @@
-# HL-HDR：HL-HDR: Multi-Exposure High Dynamic Range Reconstruction with High-Low Frequency Decomposition
+# HL-HDR: Multi-Exposure High Dynamic Range Reconstruction with High-Low Frequency Decomposition
 
 By Xiang Zhang,Genggeng Chen,Tao Hu,Kangzhen Yang,Fan Zhang,Qingsen Yan
 

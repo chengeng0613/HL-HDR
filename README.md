@@ -83,8 +83,13 @@ python fullimagetest.py
 
 ## Citation
 ```
-@inproceedings{,
- 
+@inproceedings{zhang2024hl,
+  title={HL-HDR: Multi-Exposure High Dynamic Range Reconstruction with High-Low Frequency Decomposition},
+  author={Zhang, Xiang and Chen, Genggeng and Hu, Tao and Yang, Kangzhen and Zhang, Fan and Yan, Qingsen},
+  booktitle={2024 International Joint Conference on Neural Networks (IJCNN)},
+  pages={1--9},
+  year={2024},
+  organization={IEEE}
 }
 ```
 

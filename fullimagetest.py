@@ -8,19 +8,13 @@ import logging
 import argparse
 from collections import OrderedDict
 from torch.utils.data import DataLoader
-# from skimage.measure.simple_metrics import compare_psnr
-from skimage.metrics.simple_metrics import peak_signal_noise_ratio
-from tqdm import tqdm
-
 from dataset.dataset_sig17 import SIG17_Test_Dataset, SIG17_Validation_Dataset
 from models.hdr_hpb import HDR_HPB
-from models.hdr_transformer import HDRTransformer
-from train import test_single_img
 from utils.utils import *
-from models.ahdr import AHDR
+
 
 parser = argparse.ArgumentParser(description="Test Setting")
-parser.add_argument("--dataset_dir", type=str, default='/public/home/qsyan/iccv/HDRdataset/data',
+parser.add_argument("--dataset_dir", type=str, default='E:\Datasets\Sig17',
                         help='dataset directory')
 parser.add_argument('--no_cuda', action='store_true', default=False,
                         help='disables CUDA training')
@@ -32,9 +26,9 @@ parser.add_argument('--patch_size', type=int, default=256)
 parser.add_argument('--pretrained_model', type=str, default='./checkpoints/best_checkpoint.pth')
 # parser.add_argument('--pretrained_model', type=str, default='./checkpoints/ahdr_model.pt')
 parser.add_argument('--test_best', action='store_true', default=False)
-parser.add_argument('--save_results', action='store_true', default=True)
+parser.add_argument('--save_results', action='store_true', default=False)
 parser.add_argument('--save_dir', type=str, default="./results/hdr_transformer")
-parser.add_argument('--model_arch', type=int, default=1)
+parser.add_argument('--model_arch', type=int, default=0)
 
 def main():
     # Settings
@@ -50,14 +44,15 @@ def main():
 
     # model architecture
     model_dict = {
-        0: HDRTransformer(embed_dim=60, depths=[6, 6, 6], num_heads=[6, 6, 6], mlp_ratio=2, in_chans=6), 1: HDR_HPB(6, 64, 'haar'),
+         0: HDR_HPB(6, 64, 'haar'),
     }
     model = model_dict[args.model_arch].to(device)
     # model = nn.DataParallel(model)
     # model.load_state_dict(torch.load(args.pretrained_model)['state_dict'])
 
 
-    state_dict = torch.load(args.pretrained_model)['state_dict']
+    # state_dict = torch.load(args.pretrained_model)['state_dict']
+    state_dict = torch.load(args.pretrained_model, map_location=torch.device('cpu'))['state_dict']
     new_state_dict = OrderedDict()
     for k, v in state_dict.items():
         name = k[7:]  # 去掉前面的 "module."
@@ -84,7 +79,8 @@ def main():
                                                 img_dataset['input1'].to(device), \
                                                 img_dataset['input2'].to(device), \
                                                 img_dataset['label'].to(device),
-            pred_img = model(batch_ldr0, batch_ldr1, batch_ldr2)
+            # pred_img = model(batch_ldr0, batch_ldr1, batch_ldr2)
+            pred_img = model(batch_ldr0, batch_ldr1, batch_ldr2, save_flow=True, flow_prefix=str(idx))
             pred_img = torch.squeeze(pred_img.detach().cpu()).numpy().astype(np.float32)
             label = torch.squeeze(label.detach().cpu()).numpy().astype(np.float32)
         pred_hdr = pred_img.copy()

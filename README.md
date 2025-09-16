@@ -95,3 +95,6 @@ python fullimagetest.py
 
 ## Contact
 If you have any questions, feel free to contact Genggeng Chen at chengeng0613@gmail.com.
+
+## Checkpoints
+The following links are the weights of the Kalantari dataset and the Hu dataset:https://drive.google.com/drive/folders/1XypCej20LUwbba8z-kK7ErMryLoZ4iu5?usp=drive_link
